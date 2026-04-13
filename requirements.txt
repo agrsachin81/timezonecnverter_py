@@ -1,0 +1,4 @@
+tkinter
+pytz
+tzlocal
+tkcalendar
