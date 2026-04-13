@@ -43,7 +43,7 @@ python -m PyInstaller --hidden-import=babel.numbers --collect-all tkinter --onef
 
 Timezone preferences are stored in:
 ```
-%APPDATA%\TimeZoneConverter\preferences.json
+%APPDATA%\TZC_v2\preferences.json
 ```
 
 On first run, default timezones are automatically created. You can add, edit, or delete timezones from the Preferences dialog (⚙ Pref button).
