@@ -363,12 +363,28 @@ class TimeZoneConverterApp:
         self.select_date_button.configure(text=self.calendar.get_date())
         self.calendar_popup.destroy()
 
+
+    def convert_to_number(self, str_val, max):
+        try:
+            val = int(str_val)
+            if 0 <= val <= max:
+                return val
+            
+            if val < 0:
+                return 0
+            if val > max:
+                return max
+        except ValueError:
+            pass
+        return max
     # ── Conversion ────────────────────────────────────────────────────────────
 
     def _convert_time(self):
         selected_date = self.select_date_button.cget("text")
-        selected_hour   = int(self.hour_spinbox.get())
-        selected_minute = int(self.minute_spinbox.get())
+        selected_hour   = self.convert_to_number(self.hour_spinbox.get(), 23)
+        self.hour_spinbox.set(f"{selected_hour:02d}")
+        selected_minute = self.convert_to_number(self.minute_spinbox.get(), 59)
+        self.minute_spinbox.set(f"{selected_minute:02d}")
 
         if not selected_date:
             base = datetime.now(self.local_timezone).replace(
